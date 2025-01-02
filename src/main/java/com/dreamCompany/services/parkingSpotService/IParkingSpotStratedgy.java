@@ -17,7 +17,7 @@ public interface IParkingSpotStratedgy {
     VehicleType getVehicleType();
 
     List<? extends ParkingSpot> getParkingSpotList();
-    void setParkingSpotList(List<? extends ParkingSpot> parkingSpots);
+    void addParkingSpotList(List<? extends ParkingSpot> parkingSpots);
     //based on the find parking spot technique like find near elevator, find near exit gate, find near entry gate
     void addParkingSpot(ParkingSpot parkingSpot);
 

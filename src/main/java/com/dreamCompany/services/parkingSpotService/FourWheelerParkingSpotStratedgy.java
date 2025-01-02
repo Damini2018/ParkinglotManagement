@@ -56,7 +56,7 @@ public class FourWheelerParkingSpotStratedgy implements IParkingSpotStratedgy {
     }
 
     @Override
-    public void setParkingSpotList(List<? extends ParkingSpot> parkingSpots) {
+    public void addParkingSpotList(List<? extends ParkingSpot> parkingSpots) {
         if (parkingSpots != null && !parkingSpots.isEmpty() && parkingSpots.get(0) instanceof FourWheelerParkingSpot) {
             this.fourWheelerParkingSpots = (List<FourWheelerParkingSpot>) parkingSpots;
         } else {

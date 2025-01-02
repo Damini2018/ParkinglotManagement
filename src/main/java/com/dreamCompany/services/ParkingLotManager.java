@@ -20,33 +20,7 @@ import java.util.List;
 public class ParkingLotManager {
     private ParkingSpotManager parkingSpotManager;
 
-    public void initializeParkingLot(){
-        System.out.println("Initialization done");
-        List<TwoWheelerParkingSpot> twoWheelerParkingSpots = new ArrayList<>();
-        List<FourWheelerParkingSpot> fourWheelerParkingSpots = new ArrayList<>();
 
-        for (int i = 0; i < 50; i++) {
-            TwoWheelerParkingSpot twoSpot = new TwoWheelerParkingSpot();
-            twoSpot.setId("T-" + i);
-            twoSpot.setAvailable(true);
-            twoSpot.setVehicleType(VehicleType.TWO_WHEELER);
-            twoWheelerParkingSpots.add(twoSpot);
-
-            FourWheelerParkingSpot fourSpot = new FourWheelerParkingSpot();
-            fourSpot.setId("F-" + i);
-            fourSpot.setAvailable(true);
-            fourSpot.setVehicleType(VehicleType.FOUR_WHEELER);
-            fourWheelerParkingSpots.add(fourSpot);
-        }
-
-        // Set parking spots using the new method
-        IParkingSpotStratedgy twoWheelerStrategy = parkingSpotManager.getParkingSpotStratedgy(VehicleType.TWO_WHEELER);
-        IParkingSpotStratedgy fourWheelerStrategy = parkingSpotManager.getParkingSpotStratedgy(VehicleType.FOUR_WHEELER);
-
-        twoWheelerStrategy.setParkingSpotList(twoWheelerParkingSpots);
-        fourWheelerStrategy.setParkingSpotList(fourWheelerParkingSpots);
-
-    }
 
     public void entryVehicle(Vehicle vehicle){
         parkingSpotManager.bookSpotForVehicle(vehicle);
@@ -57,5 +31,9 @@ public class ParkingLotManager {
     }
     public void exitVehicle(Ticket ticket){
         parkingSpotManager.removeBookedSpot(ticket);
+    }
+    public void increaseParkingSpot(VehicleType vehicleType, int numbers){
+       parkingSpotManager.addSpotsList(vehicleType, numbers);
+
     }
 }

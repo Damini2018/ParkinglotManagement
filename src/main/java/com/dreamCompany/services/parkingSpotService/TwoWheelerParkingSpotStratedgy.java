@@ -26,7 +26,7 @@ public class TwoWheelerParkingSpotStratedgy implements IParkingSpotStratedgy {
             TwoWheelerParkingSpot spot = new TwoWheelerParkingSpot();
             spot.setId("F-" + i);
             spot.setAvailable(true);
-            spot.setVehicleType(VehicleType.FOUR_WHEELER);
+            spot.setVehicleType(TWO_WHEELER);
             twoWheelerParkingSpots.add(spot);
         }
     }
@@ -57,7 +57,7 @@ public class TwoWheelerParkingSpotStratedgy implements IParkingSpotStratedgy {
     }
 
     @Override
-    public void setParkingSpotList(List<? extends ParkingSpot> parkingSpots) {
+    public void addParkingSpotList(List<? extends ParkingSpot> parkingSpots) {
         if (parkingSpots != null && !parkingSpots.isEmpty() && parkingSpots.get(0) instanceof TwoWheelerParkingSpot) {
             this.twoWheelerParkingSpots = (List<TwoWheelerParkingSpot>) parkingSpots;
         } else {
