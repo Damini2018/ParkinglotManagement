@@ -1,11 +1,14 @@
 package com.dreamCompany.Models.parkingspotModel;
 
+import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import static com.dreamCompany.Models.enums.VehicleType.TWO_WHEELER;
 
+@Data
+@Document(collection = "twoWheelerParkingSpot")
 public class TwoWheelerParkingSpot extends ParkingSpot {
     public TwoWheelerParkingSpot(){
-        super();
-        this.setVehicleType(TWO_WHEELER);
-        this.setAvailable(true);
+        super(TWO_WHEELER);
     }
 }

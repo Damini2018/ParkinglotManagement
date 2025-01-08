@@ -13,18 +13,18 @@ import java.util.Map;
 @Service
 @AllArgsConstructor
 public class ParkingSpotFactory {
-    private final List<IParkingSpotStratedgy> parkingSpots;
-    private Map<VehicleType, IParkingSpotStratedgy> parkingSpotMap;
+    private final List<IParkingSpotsService> parkingSpots;
+    private Map<VehicleType, IParkingSpotsService> parkingSpotMap;
 
     @PostConstruct
     public void set() {
         parkingSpotMap = new HashMap<>();
-        for (IParkingSpotStratedgy parkingSpot : ListUtil.nullSafeEmptyList(parkingSpots)) {
+        for (IParkingSpotsService parkingSpot : ListUtil.nullSafeEmptyList(parkingSpots)) {
             parkingSpotMap.put(parkingSpot.getVehicleType(), parkingSpot);
         }
     }
 
-    public IParkingSpotStratedgy getParkingSpotBasedOnVehicle(VehicleType vehicleType) {
+    public IParkingSpotsService getParkingSpotBasedOnVehicle(VehicleType vehicleType) {
         return parkingSpotMap.getOrDefault(vehicleType, null);
     }
 }

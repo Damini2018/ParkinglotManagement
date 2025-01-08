@@ -8,5 +8,6 @@ public interface IPriceCalculator {
     public static final long HOUR_CHARGE = 50;
 
     double calculatePrice(Ticket ticket);
+
     ChargesType getChargesType();
 }

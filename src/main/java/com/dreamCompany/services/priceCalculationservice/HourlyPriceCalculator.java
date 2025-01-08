@@ -12,17 +12,23 @@ public class HourlyPriceCalculator implements IPriceCalculator {
     @Override
     public double calculatePrice(Ticket ticket) {
         if (ticket != null) {
-            ticket.setEndTime(System.currentTimeMillis());
-
-            double minutes = (ticket.getEndTime() - ticket.getStartTime()) / (1000.0 * 60 * 60);
-            double ticketCharges = minutes * HOUR_CHARGE;
-            ticketCharges =  Math.round(ticketCharges * 100.0) / 100.0;
+            if (ticket.getEndTime() == 0) {
+                ticket.setEndTime(System.currentTimeMillis());
+            }
+            double hour = (int)Math.ceil((ticket.getEndTime() - ticket.getStartTime() )/ (1000.0 * 60 * 60));
+            double ticketCharges = hour * HOUR_CHARGE;
+            ticketCharges = Math.round(ticketCharges * 100.0) / 100.0;
             ticket.setTotalCharge(ticketCharges);
-            return  ticketCharges;
+            return ticketCharges;
         }
         return 0;
     }
-
+//    long differenceMs = ticket.getEndTime() - ticket.getStartTime();
+//    //            int hours = (int) Math.ceil(differenceMs / (1000.0 * 60 * 60));
+//    double ticketCharges = hours * HOUR_CHARGE;
+//    ticketCharges = Math.round(ticketCharges * 100.0) / 100.0;
+//            ticket.setTotalCharge(ticketCharges);
+//            return ticketCharges;
     @Override
     public ChargesType getChargesType() {
         return HOUR;

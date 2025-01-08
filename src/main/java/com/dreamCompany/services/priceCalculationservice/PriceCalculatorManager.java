@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 public class PriceCalculatorManager {
     private final PriceCalculatorFactory priceCalculatorFactory;
 
-    public void calculatePrice(Ticket ticket){
+    public double calculatePrice(Ticket ticket){
         IPriceCalculator priceCalculator = priceCalculatorFactory.getPriceCalculator(ticket.getChargesType());
-        priceCalculator.calculatePrice(ticket);
+        return priceCalculator.calculatePrice(ticket);
     }
 }
