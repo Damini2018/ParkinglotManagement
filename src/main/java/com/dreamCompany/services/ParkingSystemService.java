@@ -1,6 +1,9 @@
 package com.dreamCompany.services;
 
+import com.dreamCompany.Models.Payment;
 import com.dreamCompany.Models.VehicleContext;
+import com.dreamCompany.Models.enums.ChargesType;
+import com.dreamCompany.Models.enums.PaymentType;
 import com.dreamCompany.Models.enums.VehicleType;
 import com.dreamCompany.Models.parkingspotModel.ParkingSpot;
 import com.dreamCompany.services.parkingSpotService.ParkingSpotManager;
@@ -21,12 +24,18 @@ public class ParkingSystemService implements IParkingSystemService {
 
     @Override
     public void bookParkingSpotForVehicle(VehicleContext vehicleContext) {
-
+// mark vehicle parked
+        //mark spot unavailable
+        vehicleContext.getParkingSpot().setAvailable(false);
+        vehicleContext.getParkingSpot().setVehicle(vehicleContext.getVehicle());
+        vehicleContext.getTicket().setSpotId(vehicleContext.getParkingSpot().getSpotId());
     }
+
 
     @Override
     public void freeParkingSpotForVehicle(VehicleContext vehicleContext) {
-
+        vehicleContext.getParkingSpot().setAvailable(true);
+        vehicleContext.getParkingSpot().setVehicle(null);
     }
 
     @Override

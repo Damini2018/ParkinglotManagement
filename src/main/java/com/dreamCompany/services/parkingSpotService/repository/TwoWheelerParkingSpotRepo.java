@@ -26,8 +26,8 @@ public class TwoWheelerParkingSpotRepo implements IParkingSpotRepo<TwoWheelerPar
     @Override
     public List<TwoWheelerParkingSpot> findAllAvailableParkingSpot() {
         Query query = new Query();
-        Criteria criteria = Criteria.where("isAvailable").is(true)
-                .and("vehicleType").is(VehicleType.FOUR_WHEELER);
+        Criteria criteria = Criteria.where("isAvailable").is(true);
+
         query.addCriteria(criteria);
         return mongoTemplate.find(query, TwoWheelerParkingSpot.class);
     }

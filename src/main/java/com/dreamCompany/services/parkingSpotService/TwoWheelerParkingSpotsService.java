@@ -77,7 +77,7 @@ public class TwoWheelerParkingSpotsService implements IParkingSpotsService<TwoWh
 
     @Override
     public TwoWheelerParkingSpot findAvailableParkingSpot(VehicleType vehicleType) {
-        return parkingSpotRepo.findAllParkingSpot().getFirst();
+        return parkingSpotRepo.findAllAvailableParkingSpot().getFirst();
     }
 
     @Override
@@ -87,7 +87,7 @@ public class TwoWheelerParkingSpotsService implements IParkingSpotsService<TwoWh
 
     @Override
     public long getTotalAvailableParking() {
-        return parkingSpotRepo.findAllAvailableParkingSpot().stream().count();
+        return parkingSpotRepo.findAllParkingSpot().stream().count();
     }
 
     @Override

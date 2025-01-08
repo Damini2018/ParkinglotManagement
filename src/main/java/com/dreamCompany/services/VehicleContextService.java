@@ -29,7 +29,6 @@ public class VehicleContextService {
         }
         vehicleContext.setParkingSpot(spot);
         Ticket ticket = ticketService.createTicket(vehicle);
-        ticket.setSpotId(spot.getSpotId());
         vehicleContext.setTicket(ticket);
         vehicleContext.setVehicle(vehicle);
         return vehicleContext;

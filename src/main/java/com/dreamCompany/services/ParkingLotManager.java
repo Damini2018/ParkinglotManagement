@@ -38,7 +38,7 @@ public class ParkingLotManager {
     public String getTotalParkingSpace() {
         long twoWheeler = entryGateService.getTotalParkingSpot(VehicleType.TWO_WHEELER);
         long fourWheeler = entryGateService.getTotalParkingSpot(VehicleType.FOUR_WHEELER);
-        return "Two wheeler parking space available = " + twoWheeler + " and Four wheeler parking space available = " + fourWheeler;
+        return "Two wheeler parking space capacity = " + twoWheeler + " and Four wheeler parking space capacity = " + fourWheeler;
     }
 
 //    public double calculatePrice(Ticket ticket) {

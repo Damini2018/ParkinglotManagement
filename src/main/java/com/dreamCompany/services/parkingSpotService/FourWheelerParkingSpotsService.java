@@ -81,7 +81,7 @@ public class FourWheelerParkingSpotsService implements IParkingSpotsService<Four
 
     @Override
     public FourWheelerParkingSpot findAvailableParkingSpot(VehicleType vehicleType) {
-        return parkingSpotRepo.findAllParkingSpot().getFirst();
+        return parkingSpotRepo.findAllAvailableParkingSpot().getFirst();
     }
 
     @Override
