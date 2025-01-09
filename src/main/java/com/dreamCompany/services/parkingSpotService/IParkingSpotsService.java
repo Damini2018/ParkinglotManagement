@@ -1,8 +1,5 @@
 package com.dreamCompany.services.parkingSpotService;
 
-import com.dreamCompany.Models.Ticket;
-import com.dreamCompany.Models.Vehicle;
-import com.dreamCompany.Models.VehicleContext;
 import com.dreamCompany.Models.enums.VehicleType;
 import com.dreamCompany.Models.parkingspotModel.ParkingSpot;
 
@@ -16,7 +13,6 @@ public interface IParkingSpotsService<T extends ParkingSpot> {
 
     void addParkingSpotList(List<? extends ParkingSpot> parkingSpots);
 
-    //based on the find parking spot technique like find near elevator, find near exit gate, find near entry gate
     T saveParkingSpot(T parkingSpot);
 
     void markSpotUnavailable(ParkingSpot parkingSpot);
@@ -24,7 +20,9 @@ public interface IParkingSpotsService<T extends ParkingSpot> {
     void markSpotAvailable(ParkingSpot parkingSpot);
 
     void bookParkedSpotVehicle(ParkingSpot spot);
+
     void freeParkedSpotVehicle(String spotId);
+
     <T extends ParkingSpot> T findAvailableParkingSpot(VehicleType vehicleType);
 
 
@@ -35,7 +33,10 @@ public interface IParkingSpotsService<T extends ParkingSpot> {
     long getTotalParkingSpace();
 
     List<T> findAvailableParkingSpot();
+
     List<T> findAllParkingSpot();
+
+    T findParkingSpotBySpotId(String spotId);
 
     <T extends ParkingSpot> T getParkingSpot(String spotId);
 }

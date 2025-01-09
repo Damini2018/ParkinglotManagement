@@ -27,13 +27,19 @@ public class ParkingManagementApis {
 
     @PostMapping(path = "/parkVehicle")
     public ResponseEntity parkVehicle(@RequestBody Vehicle vehicle) {
-        parkingLotManager.entryVehicle(vehicle);
-        return ResponseEntity.ok("Vehicle parked successfully.");
+       Ticket ticket=  parkingLotManager.entryVehicle(vehicle);
+        return ResponseEntity.ok("Vehicle parked successfully."+ticket);
     }
 
-    @PostMapping(path = "/exitvehicle")
-    public ResponseEntity exitVehicle(@RequestBody Vehicle vehicle) {
-        parkingLotManager.exitVehicle(vehicle);
+    @PostMapping(path = "/exitVehicle/{paymentMode}/{chargeBasis}")
+    public ResponseEntity exitVehicle(@RequestBody Vehicle vehicle, @PathVariable String paymentMode, @PathVariable String chargeBasis) {
+        parkingLotManager.exitVehicle(vehicle, paymentMode, chargeBasis);
+        return ResponseEntity.ok("Vehicle exited successfully. ");
+    }
+
+    @PostMapping(path = "/exitTicket/{paymentMode}/{chargeBasis}")
+    public ResponseEntity exitVehicle(@RequestBody Ticket ticket, @PathVariable String paymentMode, @PathVariable String chargeBasis) {
+        parkingLotManager.exitVehicle(ticket, paymentMode, chargeBasis);
         return ResponseEntity.ok("Vehicle exited successfully. ");
     }
 

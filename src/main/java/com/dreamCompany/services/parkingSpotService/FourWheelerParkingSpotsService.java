@@ -1,15 +1,9 @@
 package com.dreamCompany.services.parkingSpotService;
 
-import com.dreamCompany.Models.Ticket;
-import com.dreamCompany.Models.Vehicle;
-import com.dreamCompany.Models.VehicleContext;
 import com.dreamCompany.Models.enums.VehicleType;
 import com.dreamCompany.Models.parkingspotModel.FourWheelerParkingSpot;
 import com.dreamCompany.Models.parkingspotModel.ParkingSpot;
-import com.dreamCompany.Models.parkingspotModel.TwoWheelerParkingSpot;
-import com.dreamCompany.services.parkingSpotService.repository.FourWheelerParkingSpotRepo;
 import com.dreamCompany.services.parkingSpotService.repository.IParkingSpotRepo;
-import com.dreamCompany.services.parkingSpotService.repository.TwoWheelerParkingSpotRepo;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -56,7 +50,6 @@ public class FourWheelerParkingSpotsService implements IParkingSpotsService<Four
     public FourWheelerParkingSpot saveParkingSpot(FourWheelerParkingSpot parkingSpot) {
         return parkingSpotRepo.saveSpot(parkingSpot);
     }
-
 
 
     @Override
@@ -110,7 +103,12 @@ public class FourWheelerParkingSpotsService implements IParkingSpotsService<Four
     }
 
     @Override
-    public FourWheelerParkingSpot  getParkingSpot(String spotId) {
+    public FourWheelerParkingSpot findParkingSpotBySpotId(String spotId) {
+        return parkingSpotRepo.findParkingSpot(spotId);
+    }
+
+    @Override
+    public FourWheelerParkingSpot getParkingSpot(String spotId) {
         return parkingSpotRepo.findParkingSpot(spotId);
     }
 }

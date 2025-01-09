@@ -23,5 +23,5 @@ public class Ticket {
     private double totalCharge;
     private boolean isPaid;
     private String spotId;
-    private Payment payment;
+    private String paymentReferenceId;
 }

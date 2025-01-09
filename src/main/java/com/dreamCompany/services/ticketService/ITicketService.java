@@ -10,4 +10,5 @@ public interface ITicketService {
 
      Ticket markTicketForExit(Ticket ticket);
      void saveTicket(Ticket ticket);
+     Ticket findTicketByVehicleId(String vin);
 }

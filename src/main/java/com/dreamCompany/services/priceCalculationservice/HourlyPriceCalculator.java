@@ -12,7 +12,7 @@ public class HourlyPriceCalculator implements IPriceCalculator {
     @Override
     public double calculatePrice(Ticket ticket) {
         if (ticket != null) {
-            if (ticket.getEndTime() == 0) {
+            if (ticket.getEndTime() ==null) {
                 ticket.setEndTime(System.currentTimeMillis());
             }
             double hour = (int)Math.ceil((ticket.getEndTime() - ticket.getStartTime() )/ (1000.0 * 60 * 60));

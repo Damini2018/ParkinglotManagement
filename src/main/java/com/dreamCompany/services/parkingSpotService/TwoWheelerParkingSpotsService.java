@@ -4,6 +4,7 @@ import com.dreamCompany.Models.Ticket;
 import com.dreamCompany.Models.Vehicle;
 import com.dreamCompany.Models.VehicleContext;
 import com.dreamCompany.Models.enums.VehicleType;
+import com.dreamCompany.Models.parkingspotModel.FourWheelerParkingSpot;
 import com.dreamCompany.Models.parkingspotModel.ParkingSpot;
 import com.dreamCompany.Models.parkingspotModel.TwoWheelerParkingSpot;
 import com.dreamCompany.services.parkingSpotService.repository.IParkingSpotRepo;
@@ -85,6 +86,10 @@ public class TwoWheelerParkingSpotsService implements IParkingSpotsService<TwoWh
         return 0;
     }
 
+    @Override
+    public TwoWheelerParkingSpot findParkingSpotBySpotId(String spotId) {
+        return parkingSpotRepo.findParkingSpot(spotId);
+    }
     @Override
     public long getTotalAvailableParking() {
         return parkingSpotRepo.findAllParkingSpot().stream().count();

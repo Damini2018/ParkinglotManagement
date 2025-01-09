@@ -12,7 +12,9 @@ public class MinutelyPriceCalculator implements IPriceCalculator {
     @Override
     public double calculatePrice(Ticket ticket) {
         if (ticket != null) {
-            ticket.setEndTime(System.currentTimeMillis());
+            if (ticket.getEndTime()==null) {
+                ticket.setEndTime(System.currentTimeMillis());
+            }
             double minutes = (ticket.getEndTime() - ticket.getStartTime()) / (1000000.0 * 60);
             double ticketCharges = minutes * MINUTE_CHARGE;
             ticket.setTotalCharge(ticketCharges);

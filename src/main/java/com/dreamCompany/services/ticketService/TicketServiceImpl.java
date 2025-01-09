@@ -47,4 +47,9 @@ public class TicketServiceImpl implements ITicketService {
     public void saveTicket(Ticket ticket) {
         ticketRepo.saveTicket(ticket);
     }
+
+    @Override
+    public Ticket findTicketByVehicleId(String vin) {
+        return ticketRepo.findTicketByVehicleId(vin);
+    }
 }

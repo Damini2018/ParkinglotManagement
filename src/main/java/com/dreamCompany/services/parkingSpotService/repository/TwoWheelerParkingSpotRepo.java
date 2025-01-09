@@ -1,7 +1,5 @@
 package com.dreamCompany.services.parkingSpotService.repository;
 
-import com.dreamCompany.Models.enums.VehicleType;
-import com.dreamCompany.Models.parkingspotModel.FourWheelerParkingSpot;
 import com.dreamCompany.Models.parkingspotModel.TwoWheelerParkingSpot;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.BulkOperations;
@@ -15,8 +13,8 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class TwoWheelerParkingSpotRepo implements IParkingSpotRepo<TwoWheelerParkingSpot>{
- private final MongoTemplate mongoTemplate;
+public class TwoWheelerParkingSpotRepo implements IParkingSpotRepo<TwoWheelerParkingSpot> {
+    private final MongoTemplate mongoTemplate;
 
     @Override
     public TwoWheelerParkingSpot saveSpot(TwoWheelerParkingSpot twoWheelerParkingSpot) {
@@ -65,7 +63,7 @@ public class TwoWheelerParkingSpotRepo implements IParkingSpotRepo<TwoWheelerPar
     @Override
     public long getCountOfAvailableParkingSpot() {
         Query query = new Query();
-        Criteria criteria =  Criteria.where("isAvailable").is(true);
+        Criteria criteria = Criteria.where("isAvailable").is(true);
         query.addCriteria(criteria);
         return mongoTemplate.count(query, TwoWheelerParkingSpot.class);
     }

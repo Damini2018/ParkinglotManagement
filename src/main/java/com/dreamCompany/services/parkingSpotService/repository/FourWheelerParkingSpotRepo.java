@@ -1,9 +1,6 @@
 package com.dreamCompany.services.parkingSpotService.repository;
 
-import com.dreamCompany.Models.enums.VehicleType;
 import com.dreamCompany.Models.parkingspotModel.FourWheelerParkingSpot;
-import com.dreamCompany.Models.parkingspotModel.ParkingSpot;
-import com.dreamCompany.Models.parkingspotModel.TwoWheelerParkingSpot;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.BulkOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -65,7 +62,7 @@ public class FourWheelerParkingSpotRepo implements IParkingSpotRepo<FourWheelerP
     @Override
     public long getCountOfAvailableParkingSpot() {
         Query query = new Query();
-        Criteria criteria =  Criteria.where("isAvailable").is(true);
+        Criteria criteria = Criteria.where("isAvailable").is(true);
         query.addCriteria(criteria);
         return mongoTemplate.count(query, FourWheelerParkingSpot.class);
     }

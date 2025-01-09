@@ -2,7 +2,6 @@ package com.dreamCompany.services.parkingSpotService;
 
 import com.dreamCompany.Models.enums.VehicleType;
 import com.dreamCompany.Models.parkingspotModel.ParkingSpot;
-import com.dreamCompany.services.IParkingSystemService;
 import com.dreamCompany.services.ticketService.ITicketService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,13 +13,18 @@ public class ParkingSpotManager {
     private final ITicketService ticketService;
 
 
-    public  ParkingSpot findAvailableParkingSpot(VehicleType vehicleType) {
+    public ParkingSpot findAvailableParkingSpot(VehicleType vehicleType) {
         IParkingSpotsService parkingSpotService = parkingSpotFactory.getParkingSpotBasedOnVehicle(vehicleType);
         return parkingSpotService.findAvailableParkingSpot(vehicleType);
     }
 
+    public ParkingSpot findParkingSpotBySpotid(VehicleType vehicleType, String spotId) {
+        IParkingSpotsService parkingSpotService = parkingSpotFactory.getParkingSpotBasedOnVehicle(vehicleType);
+        return parkingSpotService.findParkingSpotBySpotId(spotId);
+    }
 
-    public  ParkingSpot saveParkingSpot(ParkingSpot parkingSpot) {
+
+    public ParkingSpot saveParkingSpot(ParkingSpot parkingSpot) {
         IParkingSpotsService parkingSpotService = parkingSpotFactory.getParkingSpotBasedOnVehicle(parkingSpot.getVehicleType());
         return parkingSpotService.saveParkingSpot(parkingSpot);
     }
