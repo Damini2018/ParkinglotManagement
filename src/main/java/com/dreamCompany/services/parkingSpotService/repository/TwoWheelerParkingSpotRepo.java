@@ -42,6 +42,13 @@ public class TwoWheelerParkingSpotRepo implements IParkingSpotRepo<TwoWheelerPar
         query.addCriteria(criteria);
         return mongoTemplate.findOne(query, TwoWheelerParkingSpot.class);
     }
+    @Override
+    public List<TwoWheelerParkingSpot> findAllUtilizedParkingSpot() {
+        Query query = new Query();
+        Criteria criteria = Criteria.where("isAvailable").is(false);
+        query.addCriteria(criteria);
+        return mongoTemplate.find(query, TwoWheelerParkingSpot.class);
+    }
 
     @Override
     public void bulkSave(List<TwoWheelerParkingSpot> parkingSpots) {

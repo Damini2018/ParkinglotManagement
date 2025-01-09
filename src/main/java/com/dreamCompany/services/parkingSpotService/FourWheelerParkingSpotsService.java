@@ -17,13 +17,13 @@ import static com.dreamCompany.Models.enums.VehicleType.FOUR_WHEELER;
 @RequiredArgsConstructor
 public class FourWheelerParkingSpotsService implements IParkingSpotsService<FourWheelerParkingSpot> {
     private final IParkingSpotRepo<FourWheelerParkingSpot> parkingSpotRepo;
-
+private final static String PREFIX_FOUR ="F-";
     @PostConstruct
     void initializeParkingSpots() {
         List<FourWheelerParkingSpot> fourWheelerParkingSpots = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            FourWheelerParkingSpot spot = new FourWheelerParkingSpot();
-            spot.setSpotId("F-" + i);
+        for (int i = 1; i <= 50; i++) {
+            FourWheelerParkingSpot spot  = new FourWheelerParkingSpot();
+            spot.setSpotId(PREFIX_FOUR + i);
             spot.setAvailable(true);
             spot.setVehicleType(VehicleType.FOUR_WHEELER);
             fourWheelerParkingSpots.add(spot);
@@ -42,8 +42,8 @@ public class FourWheelerParkingSpotsService implements IParkingSpotsService<Four
     }
 
     @Override
-    public void addParkingSpotList(List<? extends ParkingSpot> parkingSpots) {
-
+    public void addParkingSpotList(List<FourWheelerParkingSpot> parkingSpots) {
+        parkingSpotRepo.bulkSave(parkingSpots);
     }
 
     @Override
@@ -105,6 +105,20 @@ public class FourWheelerParkingSpotsService implements IParkingSpotsService<Four
     @Override
     public FourWheelerParkingSpot findParkingSpotBySpotId(String spotId) {
         return parkingSpotRepo.findParkingSpot(spotId);
+    }
+
+    @Override
+    public void addExtraParkingSpot(int count) {
+        List<FourWheelerParkingSpot> fourWheelerParkingSpots = new ArrayList<>();
+        long parking =  parkingSpotRepo.findAllParkingSpot().stream().count();
+        for (int i = (int)parking+1; i <= parking+count; i++) {
+            FourWheelerParkingSpot spot  = new FourWheelerParkingSpot();
+            spot.setSpotId(PREFIX_FOUR + i);
+            spot.setAvailable(true);
+            spot.setVehicleType(VehicleType.FOUR_WHEELER);
+            fourWheelerParkingSpots.add(spot);
+        }
+        parkingSpotRepo.bulkSave(fourWheelerParkingSpots);
     }
 
     @Override

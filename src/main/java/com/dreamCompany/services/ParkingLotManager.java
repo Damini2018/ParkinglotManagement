@@ -13,19 +13,19 @@ import org.springframework.stereotype.Service;
 public class ParkingLotManager {
     private final IExitGateService exitGateService;
     private final IEntryGateService entryGateService;
+    private final IParkingSystemService parkingSystemService;
 
-
-    public void exitVehicle(Vehicle vehicle,String paymentMode, String chargeBasis ) {
-        exitGateService.letGoVehicle(vehicle,paymentMode,chargeBasis);
+    public void exitVehicle(Vehicle vehicle, String paymentMode, String chargeBasis) {
+        exitGateService.letGoVehicle(vehicle, paymentMode, chargeBasis);
     }
 
-    public void exitVehicle(Ticket ticket,String paymentMode, String chargeBasis) {
-        exitGateService.letGoVehicle(ticket,paymentMode,chargeBasis);
+    public void exitVehicle(Ticket ticket, String paymentMode, String chargeBasis) {
+        exitGateService.letGoVehicle(ticket, paymentMode, chargeBasis);
     }
 
 
     public Ticket entryVehicle(Vehicle vehicle) {
-       return  entryGateService.issueTicket(vehicle);
+        return entryGateService.issueTicket(vehicle);
     }
 
 
@@ -41,10 +41,10 @@ public class ParkingLotManager {
         return "Two wheeler parking space capacity = " + twoWheeler + " and Four wheeler parking space capacity = " + fourWheeler;
     }
 
-//    public double calculatePrice(Ticket ticket) {
-//        return priceCalculatorManager.calculatePrice(ticket);
-//    }
-//    public ParkingSpot findAvailableParkingSpot(){
-//
-//    }
+    public void addExtraParkingSpot(VehicleType vehicleType, int total) {
+        System.out.println("The total parking for "+vehicleType+" is = "+entryGateService.getTotalParkingSpot(vehicleType));
+        parkingSystemService.addExtraParkingSpot(vehicleType, total);
+        System.out.println("The total parking for "+vehicleType+" is after adding extra "+total+" = "+entryGateService.getTotalParkingSpot(vehicleType));
+
+    }
 }

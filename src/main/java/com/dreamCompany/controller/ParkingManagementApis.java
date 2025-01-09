@@ -2,6 +2,7 @@ package com.dreamCompany.controller;
 
 import com.dreamCompany.Models.Ticket;
 import com.dreamCompany.Models.Vehicle;
+import com.dreamCompany.Models.enums.VehicleType;
 import com.dreamCompany.services.ParkingLotManager;
 import com.dreamCompany.services.ticketService.repository.ITicketRepo;
 import lombok.RequiredArgsConstructor;
@@ -27,8 +28,8 @@ public class ParkingManagementApis {
 
     @PostMapping(path = "/parkVehicle")
     public ResponseEntity parkVehicle(@RequestBody Vehicle vehicle) {
-       Ticket ticket=  parkingLotManager.entryVehicle(vehicle);
-        return ResponseEntity.ok("Vehicle parked successfully."+ticket);
+        Ticket ticket = parkingLotManager.entryVehicle(vehicle);
+        return ResponseEntity.ok("Vehicle parked successfully." + ticket);
     }
 
     @PostMapping(path = "/exitVehicle/{paymentMode}/{chargeBasis}")
@@ -47,5 +48,11 @@ public class ParkingManagementApis {
     public ResponseEntity calculateParkingCharges(@RequestBody Ticket ticket) {
         ticketRepo.saveTicket(ticket);
         return ResponseEntity.ok("test");
+    }
+
+    @PostMapping(path = "/addExtraParkingSpot/{count}/{vehicleType}")
+    public ResponseEntity calculateParkingCharges(@PathVariable int count, @PathVariable VehicleType vehicleType) {
+        parkingLotManager.addExtraParkingSpot(vehicleType, count);
+        return ResponseEntity.ok("Extra parking spot added");
     }
 }

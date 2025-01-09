@@ -10,6 +10,7 @@ public interface IParkingSpotRepo<T extends ParkingSpot> {
     List<T> findAllAvailableParkingSpot();
 
     List<T> findAllParkingSpot();
+    List<T> findAllUtilizedParkingSpot();
 
     T findParkingSpot(String spotId);
 

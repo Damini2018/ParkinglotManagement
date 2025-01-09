@@ -11,7 +11,7 @@ public interface IParkingSpotsService<T extends ParkingSpot> {
 
     List<? extends ParkingSpot> getParkingSpotList();
 
-    void addParkingSpotList(List<? extends ParkingSpot> parkingSpots);
+    void addParkingSpotList(List<T> parkingSpots);
 
     T saveParkingSpot(T parkingSpot);
 
@@ -39,4 +39,5 @@ public interface IParkingSpotsService<T extends ParkingSpot> {
     T findParkingSpotBySpotId(String spotId);
 
     <T extends ParkingSpot> T getParkingSpot(String spotId);
+    void addExtraParkingSpot(int count);
 }

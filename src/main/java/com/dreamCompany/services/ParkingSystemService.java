@@ -2,13 +2,10 @@ package com.dreamCompany.services;
 
 import com.dreamCompany.Models.VehicleContext;
 import com.dreamCompany.Models.enums.VehicleType;
-import com.dreamCompany.Models.parkingspotModel.ParkingSpot;
 import com.dreamCompany.services.parkingSpotService.ParkingSpotManager;
 import com.dreamCompany.services.paymentservices.PaymentManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,22 +31,12 @@ public class ParkingSystemService implements IParkingSystemService {
     }
 
     @Override
-    public <T extends ParkingSpot> List<T> findAllAvailableParkingSpots() {
-        return List.of();
-    }
-
-    @Override
     public long getAvailableParkingSpaces(VehicleType vehicleType) {
         return parkingSpotManager.getCountOfAvailableSpot(vehicleType);
     }
 
     @Override
-    public long getTotalParkingSpaces(VehicleType vehicleType) {
-        return parkingSpotManager.getCountOfAvailableSpot(vehicleType);
-    }
-
-    @Override
-    public ParkingSpot findAvailableParkingSpot(VehicleType vehicleType) {
-        return parkingSpotManager.findAvailableParkingSpot(vehicleType);
+    public void addExtraParkingSpot(VehicleType vehicleType, int total) {
+        parkingSpotManager.addExtraParkingSpot(vehicleType, total);
     }
 }

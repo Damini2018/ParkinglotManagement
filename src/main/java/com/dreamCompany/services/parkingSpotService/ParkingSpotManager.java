@@ -38,4 +38,9 @@ public class ParkingSpotManager {
         IParkingSpotsService parkingSpotService = parkingSpotFactory.getParkingSpotBasedOnVehicle(vehicleType);
         return parkingSpotService.getTotalParkingSpace();
     }
+
+    public void addExtraParkingSpot(VehicleType vehicleType, int count) {
+        IParkingSpotsService parkingSpotService = parkingSpotFactory.getParkingSpotBasedOnVehicle(vehicleType);
+        parkingSpotService.addExtraParkingSpot(count);
+    }
 }
