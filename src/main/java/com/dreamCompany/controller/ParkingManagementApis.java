@@ -44,12 +44,6 @@ public class ParkingManagementApis {
         return ResponseEntity.ok("Vehicle exited successfully. ");
     }
 
-    @PostMapping(path = "/calculateCharges")
-    public ResponseEntity calculateParkingCharges(@RequestBody Ticket ticket) {
-        ticketRepo.saveTicket(ticket);
-        return ResponseEntity.ok("test");
-    }
-
     @PostMapping(path = "/addExtraParkingSpot/{count}/{vehicleType}")
     public ResponseEntity calculateParkingCharges(@PathVariable int count, @PathVariable VehicleType vehicleType) {
         parkingLotManager.addExtraParkingSpot(vehicleType, count);
