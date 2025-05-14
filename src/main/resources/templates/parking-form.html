@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Extra Parking Spots</title>
+</head>
+<body>
+<h1>Add Extra Parking Spots</h1>
+
+<form id="extraSpotForm" method="POST">
+    <div>
+        <label for="count">Number of Spots:</label>
+        <input
+                type="number"
+                id="count"
+                name="count"
+                min="1"
+                value="1"
+                required
+        />
+    </div>
+
+    <div>
+        <label for="vehicleType">Vehicle Type:</label>
+        <select id="vehicleType" name="vehicleType" required>
+            <option value="">– select –</option>
+            <option value="TWO_WHEELER">Two Wheeler</option>
+            <option value="FOUR_WHEELER">Four Wheeler</option>
+            <option value="HEAVY_VEHICLE">Heavy Vehicle</option>
+        </select>
+    </div>
+
+    <button type="submit">Add Spots</button>
+</form>
+
+<script>
+    document
+      .getElementById('extraSpotForm')
+      .addEventListener('submit', function (e) {
+        // before the form actually submits, tweak the action URL
+        const count = document.getElementById('count').value;
+        const vehicleType = document.getElementById('vehicleType').value;
+        // set the proper REST path
+        this.action = `/addExtraParkingSpot/${count}/${vehicleType}`;
+        // let it continue to submit
+      });
+</script>
+</body>
+</html>
